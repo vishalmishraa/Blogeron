@@ -1,0 +1,44 @@
+<%- include('./partials/header') %>
+    <div class="ui main text container">
+        <div class="ui huge header">Blogeron</div>
+        <div class="ui huge header">hey <%= auth.displayName%> !!</div>
+        <%- include('./partials/flash') %>
+            <div class="ui top attached segment">
+                <div class="ui divided items">
+                    <% blogs.forEach(function(blog){ %>
+                        <div class="item">
+                            <div class="image">
+                                <%for(let img of blog.image){ %>
+                                    <img alt="image" src="<%=img.url%>">
+                                    <%}%>
+                            </div>
+                            <div class="content">
+                                <a class="header" href="/blogs/<%=blog._id%>">
+                                    <%=blog.title %>
+                                </a>
+                                <div class="meta">
+                                    <span>
+                                        <%= blog.created.toDateString() %>
+                                            by <%= auth.displayName %>
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    <p>
+                                        <%- blog.body.substring(0, 100) %>...
+                                    </p>
+                                </div>
+                                <div class="extra">
+                                    <a class="ui floated basic blue button" href="/blogs/<%=blog._id%>">
+                                        Read More
+                                        <i class="right chevron icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+    </div>
+
+
+    <%- include('./partials/footer') %>

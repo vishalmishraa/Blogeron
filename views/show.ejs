@@ -1,0 +1,55 @@
+<%- include('./partials/header') %>
+
+
+    <div class="ui main text container segment">
+        <div class="ui huge header">
+            <%=blog.title%>
+        </div>
+        <div class="ui top attached">
+            <div class="item">
+                <%for(let img of blog.image){ %>
+                    <img class="ui centered rounded image"alt="image" src="<%=img.url%>">
+                    <%}%>
+                <div class="content">
+                    <span>
+                        <%=blog.created.toDateString()%>
+                    </span>
+                </div>
+                <div class="description">
+                    <p>
+                        <%-blog.body%>
+                    </p>
+                </div>
+                <div>
+                    <h4>
+                        <%= blog.created.toDateString() %>
+                    </h4>
+
+                </div>
+
+                <div>
+                    <h4>By <%= blog.authorName %>
+                    </h4>
+                </div>
+
+
+
+                <% if(blog.blogID=== author){ %>
+                    <p>
+                        <% console.log(author) %>
+                    </p>
+                    <p>
+                        <%author %>
+                    </p>
+                    <a class="ui orange basic button" href="/blogs/<%=blog._id%>/edit">Edit</a>
+                    <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+                        <button class="ui red basic button">Delete</button>
+                        <% } %>
+                    </form>
+            </div>
+        </div>
+
+
+
+    </div>
+    <%- include('./partials/footer') %>
